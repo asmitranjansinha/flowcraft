@@ -1,18 +1,15 @@
-// ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { GenericNode } from './nodes/genericNode';
 import { nodeConfigs } from './nodes/nodeConfig';
-
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+
+// Node Types - Define how to render each node
 const nodeTypes = Object.keys(nodeConfigs).reduce((types, key) => {
   types[key] = (props) => <GenericNode {...props} type={key} />;
   return types;
@@ -31,6 +28,7 @@ const selector = (state) => ({
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
   const {
     nodes,
     edges,
@@ -44,8 +42,8 @@ export const PipelineUI = () => {
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
-  }
-
+  };
+  // Node creation on drop
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
@@ -76,9 +74,8 @@ export const PipelineUI = () => {
         addNode(newNode);
       }
     },
-    [reactFlowInstance, addNode, getNodeID] // Added addNode and getNodeID to the dependency array
+    [reactFlowInstance, addNode, getNodeID]
   );
-
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -87,7 +84,7 @@ export const PipelineUI = () => {
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: '100wv', height: '70vh' }}>
+      <div ref={reactFlowWrapper} style={{ width: '100vw', height: '70vh' }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -100,7 +97,7 @@ export const PipelineUI = () => {
           nodeTypes={nodeTypes}
           proOptions={proOptions}
           snapGrid={[gridSize, gridSize]}
-          connectionLineType='smoothstep'
+          connectionLineType="smoothstep"
         >
           <Background color="#aaa" gap={gridSize} />
           <Controls />
@@ -108,5 +105,5 @@ export const PipelineUI = () => {
         </ReactFlow>
       </div>
     </>
-  )
-}
+  );
+};

@@ -1,16 +1,18 @@
 import { Handle } from 'reactflow';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nodeConfigs } from './nodeConfig';
+import './node.css';
 
-export const GenericNode = ({ id, data, type }) => {
+export const GenericNode = ({ id, data, type, isSelected }) => {
   const config = nodeConfigs[type];
   const [state, setState] = useState(() => {
     // Initialize state with default values from nodeConfigs
     const initialState = {};
     config.fields.forEach((field) => {
       initialState[field.key] =
-        data?.[field.key] ||
-        (field.type === 'text' ? `${field.key}_${id.split('-').pop()}` : field.options?.[0]?.value || '');
+        type === "text" ? `{{input}}` :
+          data?.[field.key] ||
+          (field.type === 'text' ? `${config.label}_${id.split('-').pop()}` : field.options?.[0]?.value || '');
     });
     return initialState;
   });
@@ -24,24 +26,29 @@ export const GenericNode = ({ id, data, type }) => {
   };
 
   return (
-    <div style={{ width: 200, height: 100, border: '1px solid black', padding: 10 }}>
-      <div>
+    <div
+      className={`node-container ${isSelected ? 'selected' : ''}`} // Apply selected class if isSelected is true
+    >
+      <div className="node-header">
         <strong>{config.label}</strong>
       </div>
+
       {config.fields.map((field) => (
-        <div key={field.key}>
-          <label>
+        <div key={field.key} className="node-field-container">
+          <label className="node-label">
             {field.label}:
             {field.type === 'text' ? (
               <input
                 type="text"
                 value={state[field.key] || ''}
                 onChange={(e) => handleInputChange(field.key, e.target.value)}
+                className="node-input"
               />
             ) : field.type === 'select' ? (
               <select
                 value={state[field.key] || ''}
                 onChange={(e) => handleInputChange(field.key, e.target.value)}
+                className="node-select"
               >
                 {field.options.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -53,16 +60,20 @@ export const GenericNode = ({ id, data, type }) => {
           </label>
         </div>
       ))}
-      {config.description && <div>{config.description}</div>}
-      {config.handles.map((handle) => (
-        <Handle
-          key={handle.id}
-          type={handle.type}
-          position={handle.position}
-          id={`${id}-${handle.id}`}
-          style={handle.style || {}}
-        />
-      ))}
+
+      {config.description && <div className="node-description">{config.description}</div>}
+
+      <div className="node-handle-container">
+        {config.handles.map((handle) => (
+          <Handle
+            key={handle.id}
+            type={handle.type}
+            position={handle.position}
+            id={`${id}-${handle.id}`}
+            style={handle.style || {}}
+          />
+        ))}
+      </div>
     </div>
   );
 };
