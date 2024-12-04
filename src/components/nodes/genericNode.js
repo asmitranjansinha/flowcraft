@@ -6,7 +6,7 @@ import './node.css';
 export const GenericNode = ({ id, data, type, isSelected }) => {
   const config = nodeConfigs[type];
   const [variables, setVariables] = useState([]);
-  const [nodeHeight, setNodeHeight] = useState(130);
+  const [nodeHeight, setNodeHeight] = useState(type === "databaseNode" ? 190 : type === "conditionalNode" ? 230 : 130);
   const [inputHeight, setInputHeight] = useState(30);
 
   const [state, setState] = useState(() => {
