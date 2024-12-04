@@ -1,4 +1,3 @@
-/* Updated node.css */
 .node-container {
     width: 250px;
     padding: 10px;
@@ -79,7 +78,6 @@
     box-shadow: 0 0 10px rgba(78, 144, 210, 0.6);
 }
 
-/* Add transition for smoother height adjustment */
 .node-input {
     transition: height 0.2s ease-in-out;
 }
@@ -97,7 +95,5 @@
 
 .react-flow__handle:hover {
     transform: scale(1.2);
-    /* Slight enlargement on hover */
     box-shadow: 0 0 12px rgba(78, 144, 210, 0.9);
-    /* Brighter glow */
 }

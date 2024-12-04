@@ -44,12 +44,11 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
 
       const textArea = document.getElementById(`${id}-textarea`);
       if (textArea) {
-        const newInputHeight = Math.min(textArea.scrollHeight, 300); // Limit input height to 500px
+        const newInputHeight = Math.min(textArea.scrollHeight, 300);
         setInputHeight(newInputHeight);
 
-        // Adjust node height to fit input and other content
         const newNodeHeight = newInputHeight + 120;
-        setNodeHeight(Math.min(newNodeHeight, 340)); // Limit total node height to 600px
+        setNodeHeight(Math.min(newNodeHeight, 340));
       }
 
       // Detect variables in the text (e.g., {{variableName}})
@@ -117,16 +116,16 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
             isConnectable={true}
             style={{
               ...handle.style,
-              width: '12px',   // Larger width
-              height: '12px',  // Larger height
-              backgroundColor: '#527acf', // Make it stand out
-              border: '2px solid #ffffff', // Add a border for contrast
-              borderRadius: '50%', // Round shape
-              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', // Add glow effect
-              transition: 'transform 0.2s ease-in-out', // Add animation for hover
+              width: '12px',   
+              height: '12px',  
+              backgroundColor: '#527acf', 
+              border: '2px solid #ffffff', 
+              borderRadius: '50%', 
+              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', 
+              transition: 'transform 0.2s ease-in-out', 
             }}
-            onMouseEnter={(e) => (e.target.style.transform = 'scale(1.2)')} // Slightly enlarge on hover
-            onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')} // Reset on leave
+            onMouseEnter={(e) => (e.target.style.transform = 'scale(1.2)')} 
+            onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')} 
           />
         ))}
 
@@ -138,13 +137,13 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
             id={`${id}-var-${variable}`}
             style={{
               top: `${30 + index * 20}px`,
-              width: '12px',   // Larger width
-              height: '12px',  // Larger height
-              backgroundColor: '#527acf', // Make it stand out
-              border: '2px solid #ffffff', // Add a border for contrast
-              borderRadius: '50%', // Round shape
-              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', // Add glow effect
-              transition: 'transform 0.2s ease-in-out', // Add animation for hover
+              width: '12px',   
+              height: '12px',  
+              backgroundColor: '#527acf', 
+              border: '2px solid #ffffff', 
+              borderRadius: '50%', 
+              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', 
+              transition: 'transform 0.2s ease-in-out', 
             }}
             isConnectable={true}
           />

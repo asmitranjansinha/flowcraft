@@ -9,7 +9,6 @@ import 'reactflow/dist/style.css';
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
 
-// Node Types - Define how to render each node
 const nodeTypes = Object.keys(nodeConfigs).reduce((types, key) => {
   types[key] = (props) => <GenericNode {...props} type={key} />;
   return types;
@@ -53,7 +52,6 @@ export const PipelineUI = () => {
         const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
         const type = appData?.nodeType;
 
-        // Check if the dropped element is valid
         if (typeof type === 'undefined' || !type) {
           return;
         }

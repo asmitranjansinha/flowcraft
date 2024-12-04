@@ -1,14 +1,10 @@
-/* Styles for the button */
 .submit-button {
     padding: 6px 30px;
     font-size: 12px;
     background-color: #527acf;
-    /* White background for button */
     color: #fff;
-    /* Text color */
     font-weight: 600;
     border: 1px solid #527acf;
-    /* Grey border for the button */
     border-radius: 6px;
     cursor: pointer;
 }
@@ -31,7 +27,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: popup-animation 4s forwards;
     z-index: 1000;
-    /* Ensure the popup appears on top */
 }
 
 .popup.success {
@@ -42,7 +37,6 @@
     border-color: red;
 }
 
-/* Animation for the popup */
 @keyframes popup-animation {
     0% {
         opacity: 0;
