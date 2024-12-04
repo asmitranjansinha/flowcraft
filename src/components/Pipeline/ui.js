@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
-import { useStore } from './store';
+import { useStore } from '../../store/store';
 import { shallow } from 'zustand/shallow';
-import { GenericNode } from './nodes/genericNode';
-import { nodeConfigs } from './nodes/nodeConfig';
+import { GenericNode } from '../nodes/genericNode';
+import { nodeConfigs } from '../nodes/nodeConfig';
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;

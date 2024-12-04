@@ -1,5 +1,5 @@
 import './topbar.css';
-import { SubmitButton } from './submit';
+import { SubmitButton } from '../Submit/submit';
 import { useState } from 'react';
 import { FaFileAlt } from 'react-icons/fa';
 

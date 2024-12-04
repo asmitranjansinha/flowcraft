@@ -1,6 +1,6 @@
 import React from "react";
-import { nodeConfigs } from "./nodes/nodeConfig";
-import { DraggableNode } from "./draggableNode";
+import { nodeConfigs } from "../nodes/nodeConfig";
+import { DraggableNode } from "../draggableNode/draggableNode";
 import './toolbar.css';
 
 export const PipelineToolbar = () => (

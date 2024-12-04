@@ -1,6 +1,6 @@
-import { PipelineToolbar } from './toolbar';
-import { PipelineUI } from './ui';
-import { TopBar } from './topbar';
+import { PipelineToolbar } from './components/ToolBar/toolbar';
+import { PipelineUI } from './components/Pipeline/ui';
+import { TopBar } from './components/TopBar/topbar';
 import './App.css';
 
 function App() {
