@@ -1,5 +1,6 @@
 // submit.js
 import { useStore } from "./store";
+import './submit.css';
 
 export const SubmitButton = () => {
 
@@ -34,10 +35,8 @@ export const SubmitButton = () => {
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <button onClick={submitPipeline} style={{ marginTop: '20px', padding: '10px 20px' }}>
-                Submit Pipeline
-            </button>
+        <div>
+            <button className="submit-button" onClick={submitPipeline} >Submit Pipeline</button>
         </div>
     );
 }

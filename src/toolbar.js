@@ -10,7 +10,6 @@ export const PipelineToolbar = () => (
         <DraggableNode
           type={key}
           label={nodeConfigs[key].label}
-          // icon={nodeConfigs[key].icon} // Assuming icons are available in nodeConfigs
         />
       </div>
     ))}
