@@ -1,10 +1,10 @@
-import { useState, useRef, useCallback } from "react";
-import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
-import { useStore } from "./store";
-import { shallow } from "zustand/shallow";
-import { GenericNode } from "./nodes/genericNode";
-import { nodeConfigs } from "./nodes/nodeConfig";
-import "reactflow/dist/style.css";
+import { useState, useRef, useCallback } from 'react';
+import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+import { useStore } from './store';
+import { shallow } from 'zustand/shallow';
+import { GenericNode } from './nodes/genericNode';
+import { nodeConfigs } from './nodes/nodeConfig';
+import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -23,7 +23,6 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
-  onEdgeDelete: state.onEdgeDelete,  // Add this selector
 });
 
 export const PipelineUI = () => {
@@ -37,27 +36,25 @@ export const PipelineUI = () => {
     addNode,
     onNodesChange,
     onEdgesChange,
-    onConnect,
-    onEdgeDelete,  // Add this handler
+    onConnect
   } = useStore(selector, shallow);
 
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
   };
-
   // Node creation on drop
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
 
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
-      if (event?.dataTransfer?.getData("application/reactflow")) {
-        const appData = JSON.parse(event.dataTransfer.getData("application/reactflow"));
+      if (event?.dataTransfer?.getData('application/reactflow')) {
+        const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
         const type = appData?.nodeType;
 
         // Check if the dropped element is valid
-        if (typeof type === "undefined" || !type) {
+        if (typeof type === 'undefined' || !type) {
           return;
         }
 
@@ -82,19 +79,18 @@ export const PipelineUI = () => {
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
-    event.dataTransfer.dropEffect = "move";
+    event.dataTransfer.dropEffect = 'move';
   }, []);
 
   return (
     <>
-      <div ref={reactFlowWrapper} style={{ width: "97%", height: "77vh" }}>
+      <div ref={reactFlowWrapper} style={{ width: '97', height: '77vh' }}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
-          onEdgeDelete={onEdgeDelete}  // Pass the handler
           onDrop={onDrop}
           onDragOver={onDragOver}
           onInit={setReactFlowInstance}
