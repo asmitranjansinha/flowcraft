@@ -1,14 +1,14 @@
 /* Updated node.css */
 .node-container {
     width: 250px;
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
-    border: 2px solid #4e90d2;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(78, 144, 210, 0.6);
+    border: 1px solid #527acf;
+    background-color: #fff;
+    box-shadow: 0 0 9px rgba(78, 144, 210, 0.6);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     word-wrap: break-word;
     overflow: visible;
     max-height: 340px;
@@ -19,6 +19,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #527acf;
 }
 
 .node-field-container {
@@ -37,7 +38,7 @@
     padding: 8px;
     font-size: 0.9rem;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 0.5px solid #ddd;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -81,4 +82,22 @@
 /* Add transition for smoother height adjustment */
 .node-input {
     transition: height 0.2s ease-in-out;
+}
+
+.react-flow__handle {
+    width: 16px;
+    height: 16px;
+    background-color: #527acf;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(78, 144, 210, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.react-flow__handle:hover {
+    transform: scale(1.2);
+    /* Slight enlargement on hover */
+    box-shadow: 0 0 12px rgba(78, 144, 210, 0.9);
+    /* Brighter glow */
 }

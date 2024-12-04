@@ -6,7 +6,7 @@ import './node.css';
 export const GenericNode = ({ id, data, type, isSelected }) => {
   const config = nodeConfigs[type];
   const [variables, setVariables] = useState([]);
-  const [nodeHeight, setNodeHeight] = useState(150);
+  const [nodeHeight, setNodeHeight] = useState(130);
   const [inputHeight, setInputHeight] = useState(30);
 
   const [state, setState] = useState(() => {
@@ -48,7 +48,7 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
         setInputHeight(newInputHeight);
 
         // Adjust node height to fit input and other content
-        const newNodeHeight = newInputHeight + 120; 
+        const newNodeHeight = newInputHeight + 120;
         setNodeHeight(Math.min(newNodeHeight, 340)); // Limit total node height to 600px
       }
 
@@ -114,7 +114,19 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
             type={handle.type}
             position={handle.position}
             id={`${id}-${handle.id}`}
-            style={handle.style || {}}
+            isConnectable={true}
+            style={{
+              ...handle.style,
+              width: '12px',   // Larger width
+              height: '12px',  // Larger height
+              backgroundColor: '#527acf', // Make it stand out
+              border: '2px solid #ffffff', // Add a border for contrast
+              borderRadius: '50%', // Round shape
+              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', // Add glow effect
+              transition: 'transform 0.2s ease-in-out', // Add animation for hover
+            }}
+            onMouseEnter={(e) => (e.target.style.transform = 'scale(1.2)')} // Slightly enlarge on hover
+            onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')} // Reset on leave
           />
         ))}
 
@@ -124,7 +136,16 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
             type="target"
             position="left"
             id={`${id}-var-${variable}`}
-            style={{ top: `${30 + index * 20}px` }}
+            style={{
+              top: `${30 + index * 20}px`,
+              width: '12px',   // Larger width
+              height: '12px',  // Larger height
+              backgroundColor: '#527acf', // Make it stand out
+              border: '2px solid #ffffff', // Add a border for contrast
+              borderRadius: '50%', // Round shape
+              boxShadow: '0 0 8px rgba(78, 144, 210, 0.6)', // Add glow effect
+              transition: 'transform 0.2s ease-in-out', // Add animation for hover
+            }}
             isConnectable={true}
           />
         ))}
