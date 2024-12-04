@@ -1,0 +1,25 @@
+/* Styles for the header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    background-color: #fff;  /* White background */
+    border: 1px solid #d3d3d3;  /* Grey border */
+}
+
+/* Styles for the button */
+.submit-button {
+    padding: 6px 20px;
+    font-size: 12px;
+    background-color: #527acf;  /* White background for button */
+    color: #fff;  /* Text color */
+    font-weight: 600;
+    border: 1px solid #527acf;  /* Grey border for the button */
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #3f68c0;  /* Light grey background on hover */
+}
