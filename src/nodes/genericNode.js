@@ -5,14 +5,20 @@ import './node.css';
 
 export const GenericNode = ({ id, data, type, isSelected }) => {
   const config = nodeConfigs[type];
+  const [variables, setVariables] = useState([]);
+  const [nodeHeight, setNodeHeight] = useState(150);
+  const [inputHeight, setInputHeight] = useState(30);
+
   const [state, setState] = useState(() => {
-    // Initialize state with default values from nodeConfigs
     const initialState = {};
     config.fields.forEach((field) => {
       initialState[field.key] =
-        type === "text" ? `{{input}}` :
-          data?.[field.key] ||
-          (field.type === 'text' ? `${config.label}_${id.split('-').pop()}` : field.options?.[0]?.value || '');
+        type === "text"
+          ? `{{input}}`
+          : data?.[field.key] ||
+          (field.type === 'text'
+            ? `${config.label}_${id.split('-').pop()}`
+            : field.options?.[0]?.value || '');
     });
     return initialState;
   });
@@ -23,11 +29,39 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
 
   const handleInputChange = (key, value) => {
     setState((prev) => ({ ...prev, [key]: value }));
+
+    if (key === 'text') {
+      const tempElement = document.createElement('div');
+      tempElement.style.position = 'absolute';
+      tempElement.style.visibility = 'hidden';
+      tempElement.style.whiteSpace = 'pre-wrap';
+      tempElement.style.font = 'inherit';
+      tempElement.style.width = '100%';
+      tempElement.textContent = value;
+
+      document.body.appendChild(tempElement);
+      document.body.removeChild(tempElement);
+
+      const textArea = document.getElementById(`${id}-textarea`);
+      if (textArea) {
+        const newInputHeight = Math.min(textArea.scrollHeight, 300); // Limit input height to 500px
+        setInputHeight(newInputHeight);
+
+        // Adjust node height to fit input and other content
+        const newNodeHeight = newInputHeight + 120; 
+        setNodeHeight(Math.min(newNodeHeight, 340)); // Limit total node height to 600px
+      }
+
+      // Detect variables in the text (e.g., {{variableName}})
+      const detectedVariables = Array.from(value.matchAll(/\{\{\s*(\w+)\s*\}\}/g)).map((match) => match[1]);
+      setVariables(detectedVariables);
+    }
   };
 
   return (
     <div
-      className={`node-container ${isSelected ? 'selected' : ''}`} // Apply selected class if isSelected is true
+      className={`node-container ${isSelected ? 'selected' : ''}`}
+      style={{ height: `${nodeHeight}px` }} // set node height and increase dynamically
     >
       <div className="node-header">
         <strong>{config.label}</strong>
@@ -38,12 +72,22 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
           <label className="node-label">
             {field.label}:
             {field.type === 'text' ? (
-              <input
-                type="text"
-                value={state[field.key] || ''}
-                onChange={(e) => handleInputChange(field.key, e.target.value)}
-                className="node-input"
-              />
+              type === 'text' ? (
+                <textarea
+                  id={`${id}-textarea`} // unique ID for precise height calculation
+                  value={state[field.key] || ''}
+                  onChange={(e) => handleInputChange(field.key, e.target.value)}
+                  className="node-input"
+                  style={{ height: `${inputHeight}px` }} // set height to input for increasing dynamically
+                />
+              ) : (
+                <input
+                  type="text"
+                  value={state[field.key] || ''}
+                  onChange={(e) => handleInputChange(field.key, e.target.value)}
+                  className="node-input"
+                />
+              )
             ) : field.type === 'select' ? (
               <select
                 value={state[field.key] || ''}
@@ -71,6 +115,17 @@ export const GenericNode = ({ id, data, type, isSelected }) => {
             position={handle.position}
             id={`${id}-${handle.id}`}
             style={handle.style || {}}
+          />
+        ))}
+
+        {variables.map((variable, index) => (
+          <Handle
+            key={`${id}-var-${index}`}
+            type="target"
+            position="left"
+            id={`${id}-var-${variable}`}
+            style={{ top: `${30 + index * 20}px` }}
+            isConnectable={true}
           />
         ))}
       </div>

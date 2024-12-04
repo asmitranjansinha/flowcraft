@@ -1,4 +1,4 @@
-/* node.css */
+/* Updated node.css */
 .node-container {
     width: 250px;
     padding: 15px;
@@ -9,6 +9,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    word-wrap: break-word;
+    overflow: visible;
+    max-height: 340px;
+    transition: height 0.2s ease-in-out;
 }
 
 .node-header {
@@ -29,15 +33,21 @@
     color: #333;
 }
 
-.node-input,
-.node-select {
-    width: 100%;
+.node-input {
     padding: 8px;
     font-size: 0.9rem;
     border-radius: 4px;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    resize: none;
+    line-height: 1.5;
+    max-height: 300px;
+    transition: height 0.2s ease-in-out;
 }
 
 .node-description {
@@ -62,12 +72,13 @@
     font-weight: bold;
 }
 
-/* Styling for the selected node */
 .node-container.selected {
     border: 2px solid #4e90d2;
-    /* Highlight border color */
     background-color: #e6f2ff;
-    /* Background color when selected */
     box-shadow: 0 0 10px rgba(78, 144, 210, 0.6);
-    /* Box shadow to indicate selection */
+}
+
+/* Add transition for smoother height adjustment */
+.node-input {
+    transition: height 0.2s ease-in-out;
 }
