@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# Frontend React Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📌 Project Overview
 
-## Available Scripts
+This is a React-based frontend project built using `npm` and `react-scripts`. The project includes interactive components and utilizes `reactflow` for flow-based diagrams.
 
-In the project directory, you can run:
+## 🏗️ Project Architecture
 
-### `npm start`
+```
+frontend/
+├── archive/                # Archive files
+├── public/                 # Static assets (images, icons, etc.)
+├── src/
+│   ├── components/         # Reusable components
+│   │   ├── componentFolder/  # Draggable node component
+│   │   │   ├── component.js
+│   ├── store/              # Global state management
+│   │   ├── store.js
+│   ├── App.js              # Main app component
+│   ├── App.css             # Stylesheet for App
+│   ├── index.js            # Entry point of the app
+│   ├── index.css           # Global styles
+├── package.json            # Project dependencies and scripts
+├── README.md               # Project documentation
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📸 Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Home Page
 
-### `npm test`
+![Home Page](public/screenshots/Screenshot2025-02-02at09.06.05.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Flow Diagram Example
 
-### `npm run build`
+![Flow Diagram](public/screenshots/Screenshot2025-02-02at09.07.43.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚙️ Installation and Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To run this project locally, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
 
-### `npm run eject`
+   ```sh
+   git clone <repository-url>
+   cd frontend
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```sh
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Start the development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```sh
+   npm start
+   ```
 
-## Learn More
+   The app will be available at `http://localhost:3000/`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. To build the project for production:
+   ```sh
+   npm run build
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📦 Dependencies
 
-### Code Splitting
+The project uses the following npm packages:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `react` - Core React library
+- `react-dom` - React's virtual DOM
+- `react-scripts` - Scripts for managing the build process
+- `react-icons` - Icons library for React
+- `reactflow` - Library for flow-based diagrams
+- `@testing-library/react` - Testing utilities
+- `@testing-library/jest-dom` - Jest matchers for testing
+- `@testing-library/user-event` - User event simulation
+- `web-vitals` - Web performance metrics
 
-### Analyzing the Bundle Size
+## 🚀 Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Interactive flow-based components using `reactflow`
+- Modular and scalable architecture
+- State management using a centralized store
+- Fully responsive UI
 
-### Making a Progressive Web App
+## 🛠️ Development Tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Node.js & npm
+- React Developer Tools
+- VS Code / Any preferred IDE
 
-### Advanced Configuration
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This project is open-source and available under the [MIT License](LICENSE).
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Feel free to contribute, report issues, or suggest improvements!
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Happy coding! 🚀
